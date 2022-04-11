@@ -21,17 +21,6 @@ function App() {
 
   useEffect(() => {
     const functionAsync = async () =>{
-      // Logged
-      axios.post('/user', {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
       
       //
       axios.get('https://catfact.ninja/fact')
@@ -52,8 +41,8 @@ function App() {
 
 
   return (
-    <div className="App container">
-      <UserContext.Provider value={{login: false}}>
+    <div className="App container ">
+      <UserContext.Provider value={login}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home />} ></Route>

@@ -4,15 +4,14 @@ import UserContext from '../Context/UserContext';
 import logo from '../logo.svg';
 
 const Home = () => {
-    // redirect if user is not logged
+    // redirect if the user is not logged
     const navigate = useNavigate()
-    const UserData = useContext(UserContext)
+    const login = useContext(UserContext)
     useEffect(() => {
-        console.log(UserData)
-        if(!UserData.login) navigate("/login")
-    }, [UserData])
+        console.log(login)
+        if(!login.login) navigate("/login")
+    }, [login,navigate])
     
-  
 
 
     return (
