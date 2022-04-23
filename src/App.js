@@ -10,7 +10,7 @@ import Login from './Pages/Login';
 import './App.scss';
 
 // Data
-import UserContext from "./Context/UserContext"
+import { LoginProvider } from "./Context/LoginContext"
 
 // 
 const apiKey = "686f575f9b6b4d24896e94979d3c22ae";
@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     const functionAsync = async () =>{
-      
       //
       axios.get('https://catfact.ninja/fact')
       .then(function (response) {
@@ -39,10 +38,9 @@ function App() {
     }
   }, [])
 
-
   return (
-    <div className="App container ">
-      <UserContext.Provider value={login}>
+    <div className="App container">
+      <LoginProvider>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home />} ></Route>
@@ -50,7 +48,7 @@ function App() {
           </Routes>
     
         </BrowserRouter>
-      </UserContext.Provider>
+      </LoginProvider>
     </div>
   );
 }
