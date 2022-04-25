@@ -5,6 +5,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // Pages
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import Search from './Pages/Search'
+;
+// Componentes
+import List from './components/List';
 
 // Style
 import './App.scss';
@@ -12,44 +16,23 @@ import './App.scss';
 // Data
 import { LoginProvider } from "./Context/LoginContext"
 
-// 
-const apiKey = "686f575f9b6b4d24896e94979d3c22ae";
-const axios = require('axios');
-
 function App() {
-  const [login, setLogin] = useState({login: false})
-
-  useEffect(() => {
-    const functionAsync = async () =>{
-      //
-      axios.get('https://catfact.ninja/fact')
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function (res) {
-        // always executed
-        console.log(res)
-      });
-    }
-  }, [])
 
   return (
-    <div className="App container">
+    <main className="App container-fluid container-xl">
       <LoginProvider>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home />} ></Route>
             <Route path='/login' element={<Login />} ></Route>
+            <Route path='/search' element={<Search /> } >
+                <Route path=':search' element={<List />} />
+            </Route>
+            <Route path='*' element={<h1>error</h1>} ></Route>
           </Routes>
-    
         </BrowserRouter>
       </LoginProvider>
-    </div>
+    </main>
   );
 }
 
