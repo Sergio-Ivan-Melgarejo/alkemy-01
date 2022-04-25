@@ -1,0 +1,112 @@
+$color:#61DBFB;
+$bg:#00000099;
+
+.plate-container{
+    .plate{
+        border: .1em solid $bg;
+        max-width: 350px;
+        height: 100%;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        transition: border-color .3s ease-out;
+        padding: 1em;
+
+        .img-container{
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+
+            .img,.no-img,.icon{
+                width: 100%;
+                max-width: 200px;
+                max-height: 200px;
+                height: 100%;
+                position: relative;
+                left: 50%;
+                top: 50%;
+            }
+
+            .img{
+                object-fit: cover;
+                object-position: center center;
+            }
+
+            .no-img{
+                transform: translate(-50%,-50%);
+                text-align: center;
+            }
+
+            .icon{
+                padding: 2em;
+                transform: translate(-50%,-50%);
+
+                fill: $bg;
+                transition: fill .3s ease-out;
+            }
+        }
+
+
+        .card-title,
+        .card-text{
+            background-color: $bg;
+            padding: .5em;
+            text-align: center;
+        }
+
+        .card-title{
+            color: $color;
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            width: calc(100% - 2em);
+        }
+            
+        .card-text{
+            position: absolute;
+            bottom: 1em;
+            left: 1em;
+            width: calc(100% - 2em);
+        }
+        
+        &:hover{
+            border-color: $color;
+
+            .img{
+                fill: $color;
+            }  
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .plate-container{
+        .plate{
+            .img{
+                transition: transform .3s ease-out, fill .3s ease-out;
+            }
+
+            .card-title{
+                transform: translateY(-150%);
+                transition: transform .3s ease-out;
+            }
+                
+            .card-text{
+                transform: translateY(150%);
+                transition: transform .3s ease-out;
+            }
+
+            &:hover{
+                .img{
+                    transform: scale(1.2);
+                }
+
+                .card-title,
+                .card-text{
+                    transform: translateY(0%);
+                } 
+            }
+        }
+    }
+}

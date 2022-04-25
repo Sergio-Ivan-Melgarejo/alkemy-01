@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import LoginContext from '../Context/LoginContext';
+import "./Login.scss"
 
 // Librerias
 const axios = require('axios');
@@ -80,7 +81,7 @@ const Login = () => {
     }
 
     return (
-        <div className='col border border-warning'> 
+        <div className='login col'> 
             <h2>Formulario de login</h2>
                 {    
                     loader 
@@ -88,7 +89,7 @@ const Login = () => {
                             <Loader />
                             <h3 className='h3'>Procesando la petición...</h3>
                         </> 
-                    :   <form onSubmit={handleSubmit}>
+                    :   <form className='form' onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="email" className="form-label">Correo electronico</label>
                                 <input id='email' type="email" name="email" className="form-control" autoComplete='current-email' />
@@ -107,7 +108,7 @@ const Login = () => {
                                 <input type="checkbox" className="form-check-input" id="check"/>
                                 <label name="check" className="form-check-label" htmlFor="check">Mantener sesión activa</label>
                             </div>
-                            <button type="submit" className="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-primary w-100">Submit</button>
                             {
                                 msgLogin ? <p className="form-text">Debes escribir una direcion de correo valida</p> : null
                             }

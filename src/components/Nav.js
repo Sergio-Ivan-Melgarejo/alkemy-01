@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import LoginContext from '../Context/LoginContext';
 import logo from "../logo.svg"
 import "./Nav.scss"
@@ -32,14 +32,14 @@ const Nav = () => {
     }
 
     return (
-      <nav className="position-sticky top border-bottom navbar navbar-expand-lg navbar-dark w-100">
+      <nav className="position-sticky top border-bottom navbar navbar-expand-md navbar-dark w-100 bg-dark">
         <div className="container-fluid">
           
-          <div className="navbar-brand d-flex align-items-center">
+          <Link to="/" className="navbar-brand d-flex align-items-center">
             {/* <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top"> */}
             <img className='App-logo d-inline-block align-text-top ' width="50" height="40" src={logo} alt=""/>
             <h1 className='h4 m-0'>React</h1>
-          </div>
+          </Link>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -52,9 +52,6 @@ const Nav = () => {
               </li>
               <li className="nav-item">
                 <NavLink className={({isActive})=> isActive ? "nav-link active" : "nav-link" } to="/search">Recetas</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className={({isActive})=> isActive ? "nav-link active" : "nav-link" } to="/search">buscar</NavLink>
               </li>
               <li>
                 <button className='btn btn-outline-primary p-2' onClick={handleClick} >Cerrar sesión</button>
