@@ -20,7 +20,7 @@ import { LoginProvider } from "./Context/LoginContext"
 function App() {
 
   return (
-    <main className="App container-fluid container-xl">
+    <main className="App container-fluid container-xl grid p-0">
       <LoginProvider>
         <BrowserRouter>
           <Routes>

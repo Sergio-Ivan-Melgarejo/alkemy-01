@@ -26,6 +26,7 @@ const Search = () => {
   // redirige a login si no esta registrado
   useValidateLogin()
   const {login} = useContext(LoginContext)
+
   // obtiene parametros de la url
   const {search} = useLocation()
   const params = new URLSearchParams(search)
@@ -108,19 +109,21 @@ console.log(search)
   return (
     <>
       <Nav />
-      <HeaderSearch title={paramsQuery} />
-      <div className='p-3 row'>
-        { 
-          loader
-            ? <Loader />
-            : <>
-                {
-                  error
-                  ? <MsgError msg={error} />
-                  : <List data={data} />
-                }
-              </>
-        }
+      <div className='p-3'>
+        <HeaderSearch title={paramsQuery} />
+        <div className={(loader ? "justify-content-center align-items-center " : "" ) + 'p-3 row'}>
+          { 
+            loader
+              ? <Loader />
+              : <>
+                  {
+                    error
+                    ? <MsgError msg={error} />
+                    : <List data={data} />
+                  }
+                </>
+          }
+        </div>
       </div>
     </>
   )

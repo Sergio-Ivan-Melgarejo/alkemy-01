@@ -18,9 +18,11 @@ const Home = () => {
     return (
       <>
         <Nav />
-        <HeaderHome select={select} />
-        <ListSelect select={select} />
-        <InfoMenu select={select} />
+        <div className='p-3'>
+          <HeaderHome select={select} />
+          <ListSelect select={select} />
+          <InfoMenu select={select} />
+        </div>
       </>
   )
 }

@@ -37,7 +37,7 @@ const Nav = () => {
           <Link to="/" className="navbar-brand d-flex align-items-center">
             {/* <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top"> */}
             <img className='App-logo d-inline-block align-text-top ' width="50" height="40" src={logo} alt=""/>
-            <h1 className='h4 m-0'>React</h1>
+            <h1 className='h4 m-0'>React App</h1>
           </Link>
 
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

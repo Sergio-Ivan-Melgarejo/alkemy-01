@@ -4,3 +4,10 @@
     pointer-events: none !important;
     cursor: none !important;
 }
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}

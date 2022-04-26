@@ -23,7 +23,7 @@ const HeaderSearch = ({title}) => {
   }
 
   return (
-    <header className='header w-100 pt-5'>
+    <header className='header w-100 py-3'>
         <form onSubmit={handleSubmit} className='row w-100 m-auto justify-content-center text-center p-1 gap-1'>
             <Link to="/search/" className={(title ? "btn-primary " : "btn-primary disabled ") + 'btn order-sm-1 col col-sm-2 order-2 p-2'}>Aleatorios</Link>
             <input onChange={handleChange} className='rounded border-0 search col-12 col-sm order-sm-2 order-1' type="search" placeholder="Receta ..." aria-label="Search" name="search" />
