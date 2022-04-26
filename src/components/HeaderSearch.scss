@@ -1,0 +1,20 @@
+.accordion-button{
+    background-color: #00000090 !important;
+}
+
+.accordion-button.collapsed{
+    background-color: #00000050 !important;
+}
+
+.accordion-button.collapsed:hover{
+    background-color: #00000090 !important;
+}
+
+.accordion-button.collapsed:after{
+    filter: invert(75%);
+}
+
+.accordion-body{
+    background-color: #00000050;
+
+}

@@ -1,96 +1,127 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+// context
+import LoginContext from "../Context/LoginContext"
+
+// Component
 import List from '../components/List';
 import Nav from '../components/Nav';
 import HeaderSearch from '../components/HeaderSearch';
-import LoginContext from '../Context/LoginContext';
 import MsgError from '../components/MsgError';
+import Loader from '../components/Loader';
+
+// hooks
+import useValidateLogin from '../hooks/useValidateLogin';
 
 const axios = require('axios');
+
+const apiKey = "&apiKey=4de1fd1a670b4ffa9f593ed9053f9dcc";
 
 const Search = () => {
   const [data, setData] = useState([])
   const [error, setError] = useState(false)
+  const [loader, setLoader] = useState(true)
 
   // redirige a login si no esta registrado
-  const navigate = useNavigate()
+  useValidateLogin()
   const {login} = useContext(LoginContext)
-  useEffect(() => {
-      if(!login) navigate("/login")
-  }, [login,navigate])
-
-  // busca segun url
-  const params = useParams();
-  // console.log(params)
+  // obtiene parametros de la url
+  const {search} = useLocation()
+  const params = new URLSearchParams(search)
+  const paramsQuery = params.get("query")
 
   useEffect(() => {
     // evita buscar si no esta registrado
     if(login){
-      // buca la url
-      if(params.search){
-        const functionAsync = async () =>{
 
-          const apiKey = "&apiKey=686f575f9b6b4d24896e94979d3c22ae";
+    // inicia la busqueda
+    setLoader(true)
+
+      // busca con la url
+      if(search){
+console.log("busqueda con parametro")
+console.log(search)
+
+        const functionAsync = async () =>{
           // La consulta de búsqueda de recetas
-          const query = `query=pasta`
+          let url = `https://api.spoonacular.com/recipes/complexSearch?query=${paramsQuery}`;
+
           // El número de resultados esperados (entre 1 y 100).
-          const number = `&number=10`
-          // El número de resultados esperados (entre 1 y 100).
-          const diet = `&diet=vegetarian`
-        
-          axios.get(`https://api.spoonacular.com/recipes/complexSearch?${query}${number}${apiKey}${diet}`)
-          .then(function (response) {
+          const paramsNumber = params.get("number")
+          if(paramsNumber) url += `&number=${paramsNumber}`
+
+          // diet para que las recetas sean adecuadas.
+          const paramsdiet = params.get("diet")
+          if(paramsdiet) url += `&diet=vegeteria`
+          
+          url += apiKey
+
+          axios.get(url)
+          .then(function (res) {
             // handle success
-            console.log(response);
+            console.log(res);
+            if(res.status === 200) setData(res.data.results)
+
+            // termina de buscar
+            setLoader(false)
           })
           .catch(function (error) {
             // handle error
             console.log(error);
+            
+            // termina de buscar
+            setLoader(false)
           })
         }
         functionAsync()
       }
 
-      // mostrara recetas aleatorias
-      if(!params.search){
-        const functionAsync = async () =>{
+      // si esta vacio, mostrara recetas aleatorias
+      if(!search){
 
-          const apiKey = "&apiKey=686f575f9b6b4d24896e94979d3c22ae";
-          
+        const functionAsync = async () =>{
           axios.get(`https://api.spoonacular.com/recipes/random?number=100${apiKey}`)
           .then(function (res) {
             // handle success
-            // console.log(res);
+            console.log(res);
             if(res.status === 200) setData(res.data.recipes)
+
+            // termina de buscar
+            setLoader(false)
           })
           .catch(function (error) {
             // handle error
             console.log(error);
             setError("El server no responde, vuelva a intentar mas tarder.")
+
+            // termina de buscar
+            setLoader(false)
           })
+   
         }
         functionAsync()
       }
     }
-  }, [])
-
+  }, [search])
 
   return (
     <>
-        <Nav />
-        <HeaderSearch title={params.search} />
+      <Nav />
+      <HeaderSearch title={paramsQuery} />
+      <div className='p-3 row'>
         { 
-          params.search !== undefined 
-            ?  <Outlet />
+          loader
+            ? <Loader />
             : <>
                 {
                   error
                   ? <MsgError msg={error} />
                   : <List data={data} />
-
                 }
               </>
         }
+      </div>
     </>
   )
 }

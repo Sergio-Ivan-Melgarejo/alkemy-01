@@ -1,8 +1,6 @@
 import React from 'react'
 
 const InfoMenu = ({select}) => {
-    console.log(select.length)
-
     const handlePrecio = () => "añadir logica a la function"
     const handleTiempo = () => "añadir logica a la function"
     const handleScore = () => "añadir logica a la function"

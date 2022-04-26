@@ -1,1 +1,6 @@
 @import 'bootstrap';
+
+.disabled{
+    pointer-events: none !important;
+    cursor: none !important;
+}

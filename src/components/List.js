@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Loader from './Loader'
+import MsgError from './MsgError';
 import Plate from './Plate'
 
 const plates = 20;
@@ -10,37 +11,45 @@ const List = ({data}) => {
 
     useEffect(() => {
         setShowPage(data.slice((plates * pageNum),(plates * (1 + pageNum))))
-    }, [])
+    }, [pageNum,data])
 
     const handleClick = (num) => {
-        console.log(num)
-        console.log(num <= 0)
-        console.log(num >= (data.length / plates))
-        if(num <= 0) return
-        if(num >= (data.length / plates)) return
-
+        if(num < 0) return
+        if(num > maxPages - 1) return
         setPageNum(num)
-        setShowPage(data.slice((plates * pageNum),(plates * (1 + pageNum))))
     }
 
-    console.log(data.slice(pageNum,(plates * (1 + pageNum))))
+    const maxPages = Math.ceil(data.length / plates);
 
     return (
-        <div className='border border-danger p-3 row'>
+        <>
             {
-                data.length <= 0 
+                data === undefined
                 ?   <Loader/>
-                :   showPage.map(ele => <Plate key={ele.id} data={ele}></Plate>)
+                :   <>
+                        {   
+                            data.length === 0
+                            ?   <MsgError msg="No se encontro ningun resultado"/>
+                            :   <>
+                                    {                                
+                                        showPage.map(ele => <Plate key={ele.id} data={ele}></Plate>)
+                                    }   
+                                    <footer className='row w-100 m-auto align-items-center gap-1 p-0 py-3'>
+                                        <button onClick={()=>handleClick((pageNum - 1))} className={(pageNum === 0 ? "disabled " : "" ) + 'col h4 btn btn-primary m-0'}>anterior</button>
+                                        <button onClick={()=>handleClick(0)} className={(pageNum === 0 ? "disabled " : "" ) + 'col h4 btn btn-primary m-0'}>1</button>
+                                        <div className='col text-center h4 m-0'>{pageNum + 1}</div>
+                                        <button onClick={()=>handleClick(maxPages - 1)} className={(pageNum === (maxPages - 1) ? "disabled " : "" ) + 'col h4 btn btn-primary m-0'}>{maxPages}</button>
+                                        <button onClick={()=>handleClick((pageNum + 1))} className={(pageNum === (maxPages - 1) ? "disabled " : "" ) + 'col h4 btn btn-primary m-0'}>siguiente</button>
+                                    </footer>
+                                </>
+                            
+                        }
+                    </>
+               
             }
-
-           <footer className='row w-100 align-items-center gap-1'>
-               <button onClick={()=>handleClick((pageNum - 1))} className={(pageNum === 0 ? "disabled " : "" ) + 'col h4 btn btn-primary'}>anterior</button>
-               <button onClick={()=>handleClick()} className={(pageNum === 0 ? "disabled " : "" ) + 'col h4 btn btn-primary'}>1</button>
-               <div className='col text-center h4'>{pageNum + 1}</div>
-               <button onClick={()=>handleClick()} className={(pageNum === ((data.length / plates) - 1) ? "disabled " : "" ) + 'col h4 btn btn-primary'}>{data.length / plates}</button>
-               <button onClick={()=>handleClick((pageNum + 1))} className={(pageNum === ((data.length / plates) - 1) ? "disabled " : "" ) + 'col h4 btn btn-primary'}>siguiente</button>
-           </footer>
-        </div>
+            
+          
+        </>
 
     )
 }

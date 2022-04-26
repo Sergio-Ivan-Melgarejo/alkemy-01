@@ -5,9 +5,20 @@
     align-items: center;
     justify-content: center;
 
-    .form{
+    .logo-form{
+        width: 300px;
+    }
+
+    .form-container{
         width: 90%;
-        max-width: 600px;
+        max-width: 500px;
         padding: 1em;
+        background-color: #00000050;
+
+        .form{
+            width: 100%;
+            max-width: 600px;
+            padding: 1em;
+        }
     }
 }

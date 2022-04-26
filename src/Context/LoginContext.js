@@ -4,10 +4,10 @@ const LoginContext = createContext()
 export default LoginContext;
 
 // por si le da a mantener sesión activa
-const getLogin = JSON.parse(localStorage.getItem("login"))
+const getToken = localStorage.getItem("token")
 
 const LoginProvider = ({children}) => {
-    const [login, setLogin] = useState(getLogin || false)
+    const [login, setLogin] = useState(getToken || false)
 
     const data = {login,setLogin}
 

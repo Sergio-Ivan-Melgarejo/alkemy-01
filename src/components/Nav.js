@@ -25,7 +25,6 @@ const Nav = () => {
                 'Hasta luego',
               )
               setLogin(false)
-              localStorage.removeItem("login")
               localStorage.removeItem("token")
             }
           })

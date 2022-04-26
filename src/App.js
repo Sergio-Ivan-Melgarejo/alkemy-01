@@ -1,12 +1,13 @@
 // React
-import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Pages
 import Home from './Pages/Home';
 import Login from './Pages/Login';
-import Search from './Pages/Search'
-;
+import Search from './Pages/Search';
+import Details from './Pages/Details';
+import Error from './Pages/Error';
+
 // Componentes
 import List from './components/List';
 
@@ -25,10 +26,11 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} ></Route>
             <Route path='/login' element={<Login />} ></Route>
-            <Route path='/search' element={<Search /> } >
+            <Route path='/search/' element={<Search /> } >
                 <Route path=':search' element={<List />} />
             </Route>
-            <Route path='*' element={<h1>error</h1>} ></Route>
+            <Route path='/details/:id' element={<Details /> } />
+            <Route path='*' element={<Error />} ></Route>
           </Routes>
         </BrowserRouter>
       </LoginProvider>
