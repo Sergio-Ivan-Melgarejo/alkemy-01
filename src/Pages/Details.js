@@ -63,10 +63,11 @@ const Details = () => {
     }, [id]) 
 
     const price = (num) => {
+
         let str = Math.ceil(num).toString()
-        
-        if(str.length < 2) return ("0." + str)
-        if(str.length >= 2){
+
+        if(str.length <= 2) return ("0." + str)
+        if(str.length > 2){
             return (str[0] + "." + str.slice(1,(str.length)))
         }
     }
@@ -86,8 +87,8 @@ const Details = () => {
 
                             {/* titulo + acciones */}
                             <div className='col-12 col-sm-6 p-3 d-flex justify-content-between flex-column'>
-                                <h1 className='h1 text-md-center'>{data.title}</h1>
-                                <button className='btn btn-primary w-100 p-3'>Add</button>
+                                <h1 className='h1 text-md-center mb-5'>{data.title}</h1>
+                                <button className='f-3 btn btn-primary w-100 p-3'>Add</button>
                             </div>
 
                             {/* info pricipal */}
@@ -285,12 +286,12 @@ const Details = () => {
                                 <h3 className='h3 col-12 pb-3'>{data.creditsText}</h3>
                                 {
                                     data.sourceUrl 
-                                    ?   <a className='a p-3 px-5 btn btn-outline-primary me-2' href={data.sourceUrl}>{data.sourceName || "website"}</a>
+                                    ?   <a className='a p-3 px-5 mb-3 btn btn-outline-primary me-2' href={data.sourceUrl}>{data.sourceName || "website"}</a>
                                     :   null
                                 }
                                 {
                                     data.spoonacularSourceUrl
-                                    ?   <a className='a p-3 px-5 btn btn-outline-primary ' href={data.spoonacularSourceUrl}>Spoonacular</a>
+                                    ?   <a className='a p-3 px-5 mb-3 btn btn-outline-primary ' href={data.spoonacularSourceUrl}>Spoonacular</a>
                                     :   null
                                 }
                             </footer>

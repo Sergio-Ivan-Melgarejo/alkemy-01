@@ -74,7 +74,9 @@ const Login = () => {
                 Swal.fire({
                     icon: "error",
                     title: 'The server not responded',
-                    text: 'There was a server side error, please try again later.'
+                    text: 'There was a server side error, please try again later.',
+                    background: "#232323",
+                    color: "#fff"
                 })
                 setLoader(false)
             })

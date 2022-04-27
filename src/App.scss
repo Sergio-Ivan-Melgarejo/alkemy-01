@@ -23,3 +23,10 @@
     background-color:  #00000020;
     color:#fff;
 }
+
+label{
+    text-shadow:    -1px -1px 1px #000,
+                    1px 1px 1px #000,
+                    -1px 1px 1px #000,
+                    1px -1px 1px #000;
+}

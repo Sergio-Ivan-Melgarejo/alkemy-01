@@ -22,7 +22,7 @@ const Plate = ({data}) => {
   if(data.summary === undefined) data.summary = "sin descripcion"
 
   return (
-    <div onClick={handleClick} className='plate-container col-6 col-lg-3 p-3 rounded'>
+    <div onClick={handleClick} className='plate-container col-6 col-lg-3 p-0 p-sm-3 rounded'>
       <div tabIndex={1} className="plate rounded text-light bg-dark" >
           <div className='img-container rounded'>
             {

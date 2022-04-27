@@ -15,14 +15,18 @@ const Nav = () => {
             text: "Do you want to log out?",
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: "Yes, I'm sure!"
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#0d6efd',
+            confirmButtonText: "Yes, I'm sure!",
+            background: "#232323",
+            color: "#fff"
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire(
-                'closed session',
-                'bye now',
+              Swal.fire({
+                title:'closed session',
+                text:'bye now',
+                background: "#232323",
+                color: "#fff"}
               )
               setLogin(false)
               localStorage.removeItem("token")
