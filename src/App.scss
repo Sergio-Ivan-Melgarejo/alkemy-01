@@ -1,13 +1,18 @@
 @import 'bootstrap';
 
-.disabled{
-    pointer-events: none !important;
-    cursor: none !important;
-}
-
 .grid{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     min-height: 100vh;
+}
+
+.disabled{
+    pointer-events: none !important;
+    cursor: none !important;
+    user-select: none;
+}
+
+.form-control{
+    background-color: #00000040;
 }
