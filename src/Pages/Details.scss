@@ -1,0 +1,83 @@
+$color:#61DBFB;
+$bg:#00000099;
+
+.container-icon{
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon{
+        width: 5em;
+        height: 5em;
+        padding: 1em;
+        background-color: $bg;
+        fill: $color;
+    }
+
+    .title{
+        font-weight: bolder;
+        padding-top: 1em;
+        text-align: center;
+    }
+}
+
+.ingredients,
+.instructions{
+    position: relative;
+    border: .5em solid $bg;
+    border-top: .25em solid $bg;
+
+    .steps{
+        position: relative;
+    }
+
+    .steps::after{
+        content: "";
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        background-color: $color;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(50%,50%);
+        border: .2em solid $bg;
+    }
+
+    .line{
+        width: .5em;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 2em;
+        transform: translate(-50%);
+        background-color: $bg;
+    }
+}
+
+.ingredients{   
+    border: .5em solid $bg;
+    border-bottom: .25em solid $bg;
+}
+
+.extra{
+    .item{
+
+        .icon{
+            fill: $color;
+            width: 1em;
+            height: 1em;
+            margin: 0 .5em;
+        }
+    }
+}
+
+.types,
+.diets{
+    .item{
+        background-color: $bg;
+        max-width: 150px;
+        min-width: 120px;
+    }
+}

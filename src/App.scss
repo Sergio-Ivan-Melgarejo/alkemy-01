@@ -15,4 +15,11 @@
 
 .form-control{
     background-color: #00000040;
+    color: rgb(200, 200, 200);
+}
+
+.form-control:focus,
+.form-control::selection{
+    background-color:  #00000020;
+    color:#fff;
 }

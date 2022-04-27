@@ -33,7 +33,7 @@ const Login = () => {
         const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
         if (email === "") {
-            setMsgEmail("El email no puede estar vacio")
+            setMsgEmail("The email cannot be empty")
             return
         }
         setMsgEmail(false)
@@ -44,7 +44,7 @@ const Login = () => {
         setMsgPassword(false)
 
         if (email !== "" && !regexEmail.test(email)) {
-            setMsgEmail("El email no es valido")
+            setMsgEmail("The email is not valid")
             return
         }
 
@@ -73,8 +73,8 @@ const Login = () => {
                 console.dir(error)
                 Swal.fire({
                     icon: "error",
-                    title: 'El server no responde',
-                    text: 'hubo un error del lado del servidor, intentelo mas tarde.'
+                    title: 'The server not responded',
+                    text: 'There was a server side error, please try again later.'
                 })
                 setLoader(false)
             })
@@ -92,30 +92,34 @@ const Login = () => {
                 </div>
 
                 <form className='form' onSubmit={handleSubmit}>
-                    <h1 className='h2 mb-3'>Iniciar sesión</h1>
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label" >Correo electronico</label>
-                        <input id='email' type="email" name="email" className="form-control" autoComplete='current-email' placeholder='challenge@alkemy.org' tabIndex={loader ? -1 : 0} />
+                    <h1 className='h2 mb-3'>Login</h1>
+                    <div className="form-floating mb-3">
+                        <input id='email' type="email" name="email" className="form-control" autoComplete='current-email' placeholder='Email' tabIndex={loader ? -1 : 0} />
+                        <label htmlFor="email" className="form-label p-3" >Email</label>
                         {
                             msgEmail ? <p className="form-text text-danger">{msgEmail}</p> : null
                         }
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Contraseña</label>
-                        <input name="password" autoComplete='current-password' type="password" className="form-control" id="password" placeholder='react' tabIndex={loader ? -1 : 0} />
+                    <div className="form-floating mb-3">
+                        <input name="password" autoComplete='current-password' type="password" className="form-control" id="password" placeholder='Password' tabIndex={loader ? -1 : 0} />
+                        <label htmlFor="password" className="form-label">Password</label>
                         {
-                            msgPassword ? <p className="form-text text-danger">La contraseña no puede estar vacio</p> : null
+                            msgPassword ? <p className="form-text text-danger">Password cannot be empty</p> : null
                         }
                     </div>
-                    <button type="submit" className={(loader ? "disabled " : "") + "btn btn-primary w-100"} tabIndex={loader ? -1 : 0}>Submit</button>
+                    <button type="submit" className={(loader ? "disabled " : "") + "btn btn-primary w-100 p-3"} tabIndex={loader ? -1 : 0}>Sing in</button>
                     {
-                        msgLogin ? <p className="form-text text-danger">No estas registrado</p> : null
+                        msgLogin ? <p className="form-text text-danger">You are not registered</p> : null
                     }
                     <p className={(loader ? "open rounded " : "") + 'form-modal h3 text'}>
-                        Cargando ...
+                        Loading ...
                     </p>
                 </form>
             </div>
+                <p>
+                    email: challenge@alkemy.org
+                    password: react
+                </p>
         </div>
     )
 }

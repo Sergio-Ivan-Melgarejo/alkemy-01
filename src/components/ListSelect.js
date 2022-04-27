@@ -2,8 +2,8 @@ import React from 'react'
 import Plate from './Plate';
 
 const plateInitialData = {
-    title: "Vacio",
-    summary: "tienes que agregar un plato.",
+    title: "Empty",
+    summary: "have to selet a recipe.",
     vacio: true
 }
 
