@@ -35,7 +35,7 @@ const Nav = () => {
     }
 
     return (
-      <nav className="position-sticky top border-bottom navbar navbar-expand-md navbar-dark w-100 bg-dark">
+      <nav className="nav sticky-top border-bottom navbar navbar-expand-md navbar-dark w-100 bg-dark">
         <div className="container-fluid">
           
           <Link to="/" className="navbar-brand d-flex align-items-center">
@@ -56,7 +56,7 @@ const Nav = () => {
                 <NavLink className={({isActive})=> isActive ? "nav-link active" : "nav-link" } to="/search">Recipes</NavLink>
               </li>
               <li>
-                <button className='btn btn-outline-primary p-2 px-4' onClick={handleClick} >Sign off</button>
+                <button className='btn btn-outline-primary p-2 px-4' onClick={handleClick} >Log out</button>
               </li>
             </ul>
           </div>

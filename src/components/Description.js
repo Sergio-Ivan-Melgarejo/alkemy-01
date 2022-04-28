@@ -3,7 +3,7 @@ function createMarkup(code) {
 }
   
 function Description({code}) {
-    return <div dangerouslySetInnerHTML={createMarkup(code)} />;
+    return <div className="p-3 text-secondary" dangerouslySetInnerHTML={createMarkup(code)} />;
 }
 
 export default Description

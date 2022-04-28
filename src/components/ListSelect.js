@@ -7,14 +7,14 @@ const plateInitialData = {
     vacio: true
 }
 
-const ListSelect = ({select}) => {
+const ListSelect = ({state, handleDelete}) => {
     return (
         <section className='row m-auto w-100 py-5'>
             { 
-                select.map((ele,i)=> <Plate key={`plate-${i}`} data={ele} />)
+                state.map((ele,i)=> <Plate key={`plate-${i}`} data={ele} />)
             }
             {
-                Array(4 - select.length).fill(plateInitialData).map((ele,i)=> <Plate key={`plate-${i}`} data={ele} />) 
+                Array(4 - state.length).fill(plateInitialData).map((ele,i)=> <Plate key={`plate-${i}`} data={ele} />) 
             }
         </section>
     )

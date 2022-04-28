@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Loader from './Loader'
-import MsgError from './MsgError';
 import Plate from './Plate'
 
 const plates = 20;
@@ -29,7 +28,7 @@ const List = ({data}) => {
                 :   <>
                         {   
                             data.length === 0
-                            ?   <MsgError msg="No se encontro ningun resultado"/>
+                            ?   null
                             :   <>
                                     {                                
                                         showPage.map(ele => <Plate key={ele.id} data={ele}></Plate>)

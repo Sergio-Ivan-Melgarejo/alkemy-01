@@ -1,0 +1,6 @@
+export const TYPES = {
+    ADD_PLATE:"ADD_PLATE",
+    DELETE_PLATE:"DELETE_PLATE",
+    RESET:"RESET",
+    ORDER:"ORDER"
+}

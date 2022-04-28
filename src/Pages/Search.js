@@ -8,19 +8,19 @@ import LoginContext from "../Context/LoginContext"
 import List from '../components/List';
 import Nav from '../components/Nav';
 import HeaderSearch from '../components/HeaderSearch';
-import MsgError from '../components/MsgError';
 import Loader from '../components/Loader';
 
 // hooks
 import useValidateLogin from '../hooks/useValidateLogin';
 
+// library
 const axios = require('axios');
+const Swal = require('sweetalert2');
 
 const apiKey = "&apiKey=4de1fd1a670b4ffa9f593ed9053f9dcc";
 
 const Search = () => {
   const [data, setData] = useState([])
-  const [error, setError] = useState(false)
   const [loader, setLoader] = useState(true)
 
   // redirige a login si no esta registrado
@@ -41,8 +41,6 @@ const Search = () => {
 
       // busca con la url
       if(search){
-console.log("busqueda con parametro")
-console.log(search)
 
         const functionAsync = async () =>{
           // La consulta de búsqueda de recetas
@@ -61,7 +59,7 @@ console.log(search)
           axios.get(url)
           .then(function (res) {
             // handle success
-            console.log(res);
+            // console.log(res);
             if(res.status === 200) setData(res.data.results)
 
             // termina de buscar
@@ -69,8 +67,16 @@ console.log(search)
           })
           .catch(function (error) {
             // handle error
-            console.log(error);
-            
+            // console.log(error);
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'The server did not respond, please try again later.',  
+              background: "#232323",
+              color: "#fff"
+            })
+
             // termina de buscar
             setLoader(false)
           })
@@ -85,7 +91,7 @@ console.log(search)
           axios.get(`https://api.spoonacular.com/recipes/random?number=100${apiKey}`)
           .then(function (res) {
             // handle success
-            console.log(res);
+            // console.log(res);
             if(res.status === 200) setData(res.data.recipes)
 
             // termina de buscar
@@ -93,8 +99,15 @@ console.log(search)
           })
           .catch(function (error) {
             // handle error
-            console.log(error);
-            setError("El server no responde, vuelva a intentar mas tarder.")
+            // console.log(error);
+            
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'The server did not respond, please try again later.',  
+              background: "#232323",
+              color: "#fff"
+            })
 
             // termina de buscar
             setLoader(false)
@@ -115,13 +128,7 @@ console.log(search)
           { 
             loader
               ? <Loader />
-              : <>
-                  {
-                    error
-                    ? <MsgError msg={error} />
-                    : <List data={data} />
-                  }
-                </>
+              : <List data={data} />
           }
         </div>
       </div>

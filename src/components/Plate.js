@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Plate.scss"
 
-const Plate = ({data}) => {
+const Plate = ({data,handleDelete}) => {
   const navigate = useNavigate()
   // console.log(data)
 
@@ -37,26 +37,24 @@ const Plate = ({data}) => {
                 data.vacio
                 ?   <p className="card-text rounded-bottom">{data.summary}</p>  
                 :   <>
-                      <button className='btn btn-primary btn-informacion'>Informacion</button>
-                      <button className='btn btn-primary btn-add-delete'>
-                        
+                      <button className='btn btn-primary btn-informacion'>Info</button>
+                      <button className='btn btn-delete btn-add-delete'>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg>
+                        {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/></svg> */}
                       </button>
                     </>
-               
               }
-
-              
-              {
+              {/* {
                 data.vacio 
                 ? null
                 : <>
                     {
                       data.select 
-                      ?    <button className="btn btn-danger w-100 mt-1">Eliminar</button>
+                      ?    <button onClick={handleDelete(data.id)} className="btn-delete btn btn-danger w-100 mt-1">Delete</button>
                       :   null
                     }
                   </>
-              }
+              } */}
           </div>
       </div>
     </div>
