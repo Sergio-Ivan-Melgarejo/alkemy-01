@@ -15,7 +15,8 @@ import Description from '../components/Description'
 const axios = require("axios")
 const Swal = require('sweetalert2')
 
-const apiKey = "&apiKey=4de1fd1a670b4ffa9f593ed9053f9dcc";
+// const apiKey = "&apiKey=4de1fd1a670b4ffa9f593ed9053f9dcc";
+const apiKey = "&apiKey=924dc1bcfdc2458198015894591bfd2f"
 
 const Details = ({handleAdd}) => {
     const [loader, setLoader] = useState(true)
@@ -63,6 +64,24 @@ const Details = ({handleAdd}) => {
                         color: "#fff"
                     })
 
+                    setData({
+                        extendedIngredients:[
+                            {original:"sin internet?"},
+                            {original:"se acabo el limite de peticiones de la api?"},
+                            {original:"me quivoque en algo?"}
+                        ],
+                        analyzedInstructions:[{
+                            "steps":[
+                                {step:"reiniciar!"},
+                                {step:"no funciono?"},
+                                {step:"pues intentelo de nuevo mas tarde!"},
+                                {step:"siguen sin funcionar?"},
+                                {step:"contactame!"}
+                            ]}
+                        ],
+                        title:"Error"
+                    })
+                    
                     // termina de buscar
                     setLoader(false)
                   })
@@ -83,19 +102,22 @@ const Details = ({handleAdd}) => {
     }
 
     const handleClick = async () => {
+        console.log(data)
+        console.log(data.vegetarian)
         const recipe = {
             id: data.id,
             image: data.image,
             title: data.title,
-            summary: data.sumary,
             vacio: false,
             time: data.readyInMinutes,
-            score: data.spoonacularScore,
-            price: data.pricePerServing
+            score: data.healthScore,
+            // score: data.spoonacularScore,
+            price: data.pricePerServing,
+            servings:data.servings,
+            vegetarian: data.vegetarian,
+            selected: true
         }
-
         handleAdd(recipe)
-        // console.log(data)
     }
 
     return (
@@ -169,26 +191,38 @@ const Details = ({handleAdd}) => {
                             </div>
 
                             {/* Ingredients */}
-                            <div className='ingredients rounded-top p-3'>
-                                <div className='line'></div>
-                                <h2 className='p-3 px-5'>Ingredients</h2>
-                                {
-                                    data.extendedIngredients
-                                    ?   data.extendedIngredients.map((ele,i) => <p key={`ingredient-${i}`} className='steps text-secondary p-1 px-5'>{ele.original}</p>)
-                                    :   null
-                                }
-                            </div>
-
+                            {
+                                data.extendedIngredients
+                                ?   <>
+                                        <div className='ingredients rounded-top p-3'>
+                                            <div className='line'></div>
+                                            <h2 className='p-3 px-5'>Ingredients</h2>
+                                            {
+                                                data.extendedIngredients
+                                                ?   data.extendedIngredients.map((ele,i) => <p key={`ingredient-${i}`} className='steps text-secondary p-1 px-5'>{ele.original}</p>)
+                                                :   null
+                                            }
+                                        </div>
+                                    </>
+                                :   null
+                            }
                             {/* Instructions */}
-                            <div className='instructions rounded-bottom p-3'>
-                                <div className='line'></div>
-                                <h2 className='p-3 px-5'>Instructions</h2>
-                                {
-                                    data.analyzedInstructions
-                                    ?   data.analyzedInstructions[0]["steps"].map((ele,i) => <p key={`step-${i}`} className='steps text-secondary p-1 px-5'>{ele.step}</p>)
-                                    :   null
-                                }
-                            </div>
+                            {
+                                data.analyzedInstructions[0]
+                                ?   <>
+                                        <div className='instructions rounded-bottom p-3'>
+                                            <div className='line'></div>
+                                            <h2 className='p-3 px-5'>Instructions</h2>
+                                            {
+                                                data.analyzedInstructions
+                                                ?   data.analyzedInstructions[0]["steps"].map((ele,i) => <p key={`step-${i}`} className='steps text-secondary p-1 px-5'>{ele.step}</p>)
+                                                :   null
+                                            }
+                                        </div>
+                                    </>
+
+                                :   null
+                            }
 
                             {/* Extras */}
                             <div className='extra p-3 flex-wrap'>

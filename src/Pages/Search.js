@@ -17,9 +17,10 @@ import useValidateLogin from '../hooks/useValidateLogin';
 const axios = require('axios');
 const Swal = require('sweetalert2');
 
-const apiKey = "&apiKey=4de1fd1a670b4ffa9f593ed9053f9dcc";
+// const apiKey = "&apiKey=4de1fd1a670b4ffa9f593ed9053f9dcc";
+const apiKey = "&apiKey=924dc1bcfdc2458198015894591bfd2f"
 
-const Search = () => {
+const Search = ({handleAdd}) => {
   const [data, setData] = useState([])
   const [loader, setLoader] = useState(true)
 
@@ -45,14 +46,14 @@ const Search = () => {
         const functionAsync = async () =>{
           // La consulta de búsqueda de recetas
           let url = `https://api.spoonacular.com/recipes/complexSearch?query=${paramsQuery}`;
-
+          
           // El número de resultados esperados (entre 1 y 100).
           const paramsNumber = params.get("number")
           if(paramsNumber) url += `&number=${paramsNumber}`
 
           // diet para que las recetas sean adecuadas.
           const paramsdiet = params.get("diet")
-          if(paramsdiet) url += `&diet=vegeteria`
+          if(paramsdiet) url += `&diet=${paramsdiet}`
           
           url += apiKey
 
@@ -124,11 +125,11 @@ const Search = () => {
       <Nav />
       <div className='p-3'>
         <HeaderSearch title={paramsQuery} />
-        <div className={(loader ? "justify-content-center align-items-center " : "" ) + 'p-3 row'}>
+        <div className={(loader ? "justify-content-center align-items-center " : "" ) + 'p-sm-3 row'}>
           { 
             loader
               ? <Loader />
-              : <List data={data} />
+              : <List data={data} handleAdd={handleAdd} />
           }
         </div>
       </div>

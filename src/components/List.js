@@ -4,7 +4,7 @@ import Plate from './Plate'
 
 const plates = 20;
 
-const List = ({data}) => {
+const List = ({data,handleAdd}) => {
     const [pageNum, setPageNum] = useState(0)
     const [showPage, setShowPage] = useState([])
 
@@ -31,7 +31,7 @@ const List = ({data}) => {
                             ?   null
                             :   <>
                                     {                                
-                                        showPage.map(ele => <Plate key={ele.id} data={ele}></Plate>)
+                                        showPage.map(ele => <Plate key={ele.id} data={ele} handleAdd={handleAdd}></Plate>)
                                     }   
                                     <footer className='row w-100 m-auto align-items-center gap-1 p-0 py-3'>
                                         <button onClick={()=>handleClick((pageNum - 1))} className={(pageNum === 0 ? "disabled " : "" ) + 'col h4 btn btn-primary m-0'}>anterior</button>

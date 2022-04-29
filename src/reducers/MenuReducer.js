@@ -5,9 +5,42 @@ export const MenuInitialState = []
 
 function MenuReducer (state,action) {
     switch(action.type){
-        case TYPES.ADD_PLATE:
+        case TYPES.ADD_PLATE:{
+
+            let vegeterian = state.filter(ele => ele.vegetarian)
+            let nonVegeterian = state.filter(ele => !ele.vegetarian)
             let verification =  state.filter(ele => ele.id === action.payload.id)
-        
+console.log("vegeteria",vegeterian)
+console.log("no vegeteria",nonVegeterian)
+            // si ya hay 2 recetas vegetarianas
+            if(vegeterian.length >= 2 && action.payload.vegeterian){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'There are already 2 vegetarian recipes saved.',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    background: "#232323",
+                    color: "#fff"
+                })
+                return state
+            }
+
+            // si ya hay 2 recetas no vegetarianas
+            if(nonVegeterian.length >= 2 && !action.payload.vegetarian){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'There are already 2 non-vegetarian recipes saved.',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    background: "#232323",
+                    color: "#fff"
+                })
+                return state
+            }
+
+            // si ya esta guardado la receta
             if (verification.length === 1){
                 Swal.fire({
                     icon: 'error',
@@ -19,6 +52,7 @@ function MenuReducer (state,action) {
                 return state
             }
 
+            // comprueba la cantidad que hay guardados
             if(state.length < 4){
                 Swal.fire({
                     position: 'top-end',
@@ -28,7 +62,11 @@ function MenuReducer (state,action) {
                     timer: 1000,
                     background: "#232323",
                     color: "#fff"
-                  })
+                })
+                localStorage.setItem("data",JSON.stringify([
+                        ...state,
+                        action.payload
+                    ]))
                 return [
                     ...state, 
                     action.payload
@@ -44,21 +82,51 @@ function MenuReducer (state,action) {
                 })
                 return state
             }
+        }
 
         case TYPES.DELETE_PLATE:
-        return state.filter(ele => ele.id === action.payload)
+            let data = state.filter(ele => ele.id !== action.payload)
+            localStorage.setItem("data",JSON.stringify(data))
+            return data
+
         case TYPES.ORDER:
-
             let vegeterian = state.filter(ele => ele.veterian)
-
             if(state.length === 4 && vegeterian.length === 2){
-                return
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your request has been sent.',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    background: "#232323",
+                    color: "#fff"
+                })
+                localStorage.removeItem("data")
+                return MenuInitialState
             }
             else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'The recipes must be two vegetarian and two non-vegetarian.',
+                    background: "#232323",
+                    color: "#fff"
+                })
                 return state
             }
+
         case TYPES.RESET:
-        return MenuInitialState
+            localStorage.removeItem("data")
+            return MenuInitialState
+
+        case TYPES.GET_DATA:
+            let getData = localStorage.getItem("data")
+            if(getData){
+                getData = JSON.parse(getData)
+                return [...getData]
+            }
+            else return state
+
         default: return state
     }
 }

@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
 
 const Error = () => {
-    
     useValidateLogin()
     useEffect(() => {
         Swal.fire({
@@ -21,7 +20,6 @@ const Error = () => {
           })
     }, [])
     
-
     return (
         <div className='row'>
             <Nav />

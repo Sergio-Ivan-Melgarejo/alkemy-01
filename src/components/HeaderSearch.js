@@ -11,8 +11,8 @@ const HeaderSearch = ({title}) => {
     if(e.target.search.value.length > 1){
       let url = `?query=${e.target.search.value}`;
       if(e.target.num.value) url += `&number=${e.target.num.value}`
-      if(e.target.vegetarian.checked) url += `&diet=vegeteria`
-
+      if(e.target.vegetarian.checked) url += `&diet=vegetarian`
+      
       navigate(url)
     }
   }

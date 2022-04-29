@@ -2,5 +2,6 @@ export const TYPES = {
     ADD_PLATE:"ADD_PLATE",
     DELETE_PLATE:"DELETE_PLATE",
     RESET:"RESET",
-    ORDER:"ORDER"
+    ORDER:"ORDER",
+    GET_DATA:"GET_DATA"
 }

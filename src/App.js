@@ -19,7 +19,7 @@ import { LoginProvider } from "./Context/LoginContext"
 import Msg from './components/Msg';
 
 // Reducer
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import MenuReducer, { MenuInitialState } from './reducers/MenuReducer';
 import { TYPES } from './actions/MenuActions';
 
@@ -30,13 +30,12 @@ function App() {
   const handleDelete = (id) => dispatch({type:TYPES.DELETE_PLATE,payload:id})
   const handleReset = () => dispatch({type:TYPES.RESET})
   const handleOrder = () => dispatch({type:TYPES.ORDER})
+  const handleGetData = () => dispatch({type:TYPES.GET_DATA})
 
-  // console.log(state)
-  // useEffect(() => {
-  //   console.log(state)
-  // }, [state])
+  useEffect(() => {
+    handleGetData()
+  }, [])
   
-
   return (
     <main className="App container-fluid container-xl grid p-0">
       <Msg />
@@ -48,7 +47,7 @@ function App() {
             <Route path='/search/' element={<Search handleAdd={handleAdd} /> } >
                 <Route path=':search' element={<List />} />
             </Route>
-            <Route path='/details/:id' element={<Details handleAdd={handleAdd} /> } />
+            <Route path='/details/:id' element={<Details handleAdd={handleAdd} state={state} /> } />
             <Route path='*' element={<Error />} ></Route>
           </Routes>
         </BrowserRouter>

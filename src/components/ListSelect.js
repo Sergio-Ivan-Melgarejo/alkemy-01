@@ -11,10 +11,10 @@ const ListSelect = ({state, handleDelete}) => {
     return (
         <section className='row m-auto w-100 py-5'>
             { 
-                state.map((ele,i)=> <Plate key={`plate-${i}`} data={ele} />)
+                state.map((ele,i)=> <Plate key={`plate-${i}`} data={ele} handleDelete={handleDelete} />)
             }
             {
-                Array(4 - state.length).fill(plateInitialData).map((ele,i)=> <Plate key={`plate-${i}`} data={ele} />) 
+                Array(4 - state.length).fill(plateInitialData).map((ele,i)=> <Plate key={`plate-${i}`} data={ele}/>) 
             }
         </section>
     )
