@@ -70,7 +70,7 @@ const Login = () => {
                 }
             })
             .catch(error => {
-                console.dir(error)
+                // console.dir(error)
                 Swal.fire({
                     icon: "error",
                     title: 'The server not responded',

@@ -1,5 +1,5 @@
 // React
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 
 // Pages
 import Home from './Pages/Home';
@@ -40,7 +40,7 @@ function App() {
     <main className="App container-fluid container-xl grid p-0">
       <Msg />
       <LoginProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path='/' element={<Home state={state} handleDelete={handleDelete} handleReset={handleReset} handleOrder={handleOrder} />} ></Route>
             <Route path='/login' element={<Login />} ></Route>
@@ -50,7 +50,7 @@ function App() {
             <Route path='/details/:id' element={<Details handleAdd={handleAdd} state={state} /> } />
             <Route path='*' element={<Error />} ></Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </LoginProvider>
     </main>
   );
