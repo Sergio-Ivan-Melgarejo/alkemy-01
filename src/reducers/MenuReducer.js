@@ -10,8 +10,7 @@ function MenuReducer (state,action) {
             let vegeterian = state.filter(ele => ele.vegetarian)
             let nonVegeterian = state.filter(ele => !ele.vegetarian)
             let verification =  state.filter(ele => ele.id === action.payload.id)
-console.log("vegeteria",vegeterian)
-console.log("no vegeteria",nonVegeterian)
+
             // si ya hay 2 recetas vegetarianas
             if(vegeterian.length >= 2 && action.payload.vegeterian){
                 Swal.fire({
@@ -90,14 +89,13 @@ console.log("no vegeteria",nonVegeterian)
             return data
 
         case TYPES.ORDER:
-            let vegeterian = state.filter(ele => ele.veterian)
-            if(state.length === 4 && vegeterian.length === 2){
+            let vegetarian = state.filter(ele => ele.vegetarian)
+            if(state.length === 4 && vegetarian.length === 2){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'Your request has been sent.',
                     showConfirmButton: false,
-                    timer: 1000,
                     background: "#232323",
                     color: "#fff"
                 })

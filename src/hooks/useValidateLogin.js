@@ -6,7 +6,6 @@ const useValidateLogin = () => {
     const navigate = useNavigate()
     const {login} = useContext(LoginContext)
     useEffect(() => {
-        console.log("compueba useValidateLogin")
         if(!login) navigate("/login")
     }, [login,navigate])
 

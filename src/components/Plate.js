@@ -7,12 +7,15 @@ const Swal = require('sweetalert2')
 const Plate = ({ data, handleDelete }) => {
   const navigate = useNavigate()
 
-  const handleClick = () => {
+  const handleClickCard = () => {
     if (data.vacio) {
       // redirige si no hay plato agregaro
       navigate("/search")
       return
     }
+  }  
+
+  const handleClickInfo = () => {
     if (!data.vacio) {
       // lleva a info plata
       navigate(`/details/${data.id}`)
@@ -44,12 +47,12 @@ const Plate = ({ data, handleDelete }) => {
       }
     })
   }
-
+  
   if (data.summary === undefined) data.summary = "no data"
 
   return (
     <div className='plate-container col-6 col-lg-3 p-0 p-md-3 rounded'>
-      <div tabIndex={1} className="plate rounded text-light p-0" >
+      <div tabIndex={1} onClick={handleClickCard} className="plate rounded text-light p-0" >
         <div className='img-container rounded'>
           {
             data.vacio
@@ -61,7 +64,7 @@ const Plate = ({ data, handleDelete }) => {
         {
           data.vacio
             ? <p className="card-text rounded-bottom">{data.summary}</p>
-            : <button onClick={handleClick} className='btn btn-primary btn-informacion'>Info</button>
+            : <button onClick={handleClickInfo} className='btn btn-primary btn-informacion'>Info</button>
         }
       </div>
       {
@@ -70,6 +73,17 @@ const Plate = ({ data, handleDelete }) => {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" /></svg>
             </button>
           : null
+      }
+      {
+        data.vacio || !data.selected
+        ? null
+        : <>
+            {
+              data.vegetarian
+              ? <svg width="3em" className='icon-vegetarian p-2 rounded position-absolute' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z"/></svg>
+              : <svg width="3em" className='icon-vegetarian p-2 rounded position-absolute' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M462.8 49.57a169.44 169.44 0 0 0-239.5 0C187.82 85 160.13 128 160.13 192v85.83l-40.62 40.59c-9.7 9.69-24 11.07-36.78 6a60.33 60.33 0 0 0-65 98.72C33 438.39 54.24 442.7 73.85 438.21c-4.5 19.6-.18 40.83 15.1 56.1a60.35 60.35 0 0 0 98.8-65c-5.09-12.73-3.72-27 6-36.75L234.36 352h85.89a187.87 187.87 0 0 0 61.89-10c-39.64-43.89-39.83-110.23 1.05-151.07 34.38-34.36 86.76-39.46 128.74-16.8 1.3-44.96-14.81-90.28-49.13-124.56z"/></svg>
+            }
+          </>
       }
     </div>
   )

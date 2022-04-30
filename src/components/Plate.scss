@@ -57,17 +57,17 @@ $bg:#00000099;
                             -1px 1px  rgb(0, 0, 0),
                             1px -1px  rgb(0, 0, 0),
                             -1px -1px  rgb(0, 0, 0);
-                            padding: 1em;
+            padding: .5em;
         }
         
         .btn-informacion{
-            padding: .8em;
+            padding: .5em;
         }
 
         .card-title{
             color: $color;
             position: absolute;
-            top: 1em;
+            bottom: 3.5em;
             left: 1em;
             width: calc(100% - 2em);
         }
@@ -91,6 +91,7 @@ $bg:#00000099;
 
     .btn-delete{
         width: 3em;
+        height: 3em;
         position: absolute;
         right: 1em;
         top: 1em;
@@ -110,6 +111,16 @@ $bg:#00000099;
             }
         }
     }
+
+    .icon-vegetarian{
+        background-color: #242424;
+        fill: $color;
+        top: 1em;
+        left: 1em;
+        height: 3em;
+        width: 3em;
+        border: 1px solid $bg;
+    }
 }
 
 @media screen and (min-width:768px) {
@@ -120,7 +131,7 @@ $bg:#00000099;
             }
 
             .card-title{
-                transform: translateY(-150%);
+                transform: translateY(350%);
                 transition: transform .3s ease-out;
             }
             
