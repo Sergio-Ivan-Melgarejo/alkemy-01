@@ -48,7 +48,7 @@ const Login = () => {
             return
         }
 
-        if (email !== "challenge@alkemy.org" || password !== "react") {
+        if (email !== "anonimo@email.com" || password !== "react") {
             setMsgLogin(true)
             return
         }
@@ -56,30 +56,39 @@ const Login = () => {
 
         // si todo esta ok
         setLoader(true)
-        const URL = "http://challenge-react.alkemy.org/";
-        axios.post(URL, {
-            email: email,
-            password: password
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    localStorage.setItem("token", res.data.token);
-                    setLogin(res.data.token)
-                    navigate("/")
-                    setLoader(false)
-                }
-            })
-            .catch(error => {
-                // console.dir(error)
-                Swal.fire({
-                    icon: "error",
-                    title: 'The server not responded',
-                    text: 'There was a server side error, please try again later.',
-                    background: "#232323",
-                    color: "#fff"
-                })
-                setLoader(false)
-            })
+    
+        // como callo la api,lo emulo
+        // const URL = "http://challenge-react.alkemy.org/";
+        // axios.post(URL, {
+        //     email: email,
+        //     password: password
+        // })
+        //     .then(res => {
+        //         if (res.status === 200) {
+        //             localStorage.setItem("token", res.data.token);
+        //             setLogin(res.data.token)
+        //             navigate("/")
+        //             setLoader(false)
+        //         }
+        //     })
+        //     .catch(error => {
+        //         // console.dir(error)
+        //         Swal.fire({
+        //             icon: "error",
+        //             title: 'The server not responded',
+        //             text: 'There was a server side error, please try again later.',
+        //             background: "#232323",
+        //             color: "#fff"
+        //         })
+        //         setLoader(false)
+        //     })
+
+        setTimeout(()=>{
+            localStorage.setItem("token", "true");
+            setLogin("true")
+            navigate("/")
+            setLoader(false)
+        },1500)
     }
 
     return (
@@ -118,10 +127,10 @@ const Login = () => {
                     </p>
                 </form>
             </div>
-                <p>
-                    email: challenge@alkemy.org
-                    password: react
-                </p>
+                <div className='msg text-secondary text-start w-100'>
+                    <p className='m-0'>email: <span>anonimo@email.com</span></p>
+                    <p className='m-0'>password: <span>react</span></p>            
+                </div>
         </div>
     )
 }
