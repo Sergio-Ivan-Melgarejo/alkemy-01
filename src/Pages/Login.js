@@ -49,7 +49,11 @@ const Login = () => {
         }
 
         if (email !== "anonimo@email.com" || password !== "react") {
-            setMsgLogin(true)
+            setLoader(true)
+            setTimeout(()=>{
+                setLoader(false)
+                setMsgLogin(true)
+            },1000)
             return
         }
         setMsgLogin(false)
